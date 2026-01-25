@@ -47,7 +47,7 @@ By automating the internship matching process, the platform significantly reduce
 ---
 
 ## 🛠️ Technologies Used
-
+- BeautifulSoup
 - **Python**
 - **Flask** – Web framework
 - **Machine Learning** – Skill & preference matching
@@ -57,7 +57,7 @@ By automating the internship matching process, the platform significantly reduce
 - **Git & GitHub** – Version control
 - **Session Management & Authentication**
 - **Basic Testing & Debugging**
-- **BeautifulSoup
+
 
 ---
 
@@ -114,5 +114,6 @@ Smart_Internship_Matchmaker/
 AI-based Internship Recommendation System
 
 ---
+
 
 
