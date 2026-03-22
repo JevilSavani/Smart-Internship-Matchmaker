@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    <h1>Find Your Perfect Internship Match</h1>
+    <p>AI-powered recommendation engine that aligns your skills, location, and goals with the best internships from top companies.</p>
+    <div class="cta-buttons">
+        <a href="{{ url_for('student.register') }}" class="btn-primary large">Get Started Now</a>
+        <a href="{{ url_for('student.login') }}" class="btn-secondary large">Already have an account?</a>
+    </div>
+</div>
+
+<div class="features">
+    <div class="feature-card">
+        <h3>🧠 Smart Matching</h3>
+        <p>Our machine learning algorithm analyzes your skills against job requirements to find the best fit.</p>
+    </div>
+    <div class="feature-card">
+        <h3>📍 Location Filtering</h3>
+        <p>Find opportunities where you live, or easily spot the best remote & WFH internships.</p>
+    </div>
+    <div class="feature-card">
+        <h3>📊 Real-time Ranking</h3>
+        <p>Instead of endless searching, we rank opportunities giving you a clear prioritized list.</p>
+    </div>
+</div>
+{% endblock %}

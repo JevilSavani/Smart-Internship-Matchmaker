@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h1>Welcome, {{ student.name }}!</h1>
+    <p>Here are your top tailored internship matches based on your skills and location profile.</p>
+</div>
+
+<div class="profile-summary">
+    <div class="profile-item">
+        <strong>Your skills:</strong>
+        <span class="skill-tags">
+            {% for skill in student.skills.split(',') %}
+                <span class="tag tag-blue">{{ skill.strip() }}</span>
+            {% endfor %}
+        </span>
+    </div>
+    <div class="profile-item">
+        <strong>Preferred Location:</strong> {{ student.preferred_location or 'Any' }}
+    </div>
+</div>
+
+<h2 class="section-title">Top 20 Recommended Internships</h2>
+
+{% if internships %}
+<div class="internship-grid">
+    {% for internship in internships %}
+    <div class="internship-card">
+        <div class="card-header">
+            <h3>{{ internship.company_name }}</h3>
+            <span class="match-badge">{{ internship.match_score }}% Match</span>
+        </div>
+        
+        <div class="card-body">
+            <p class="role-location">
+                <span class="icon">📍</span> {{ internship.location }}
+            </p>
+            <p class="stipend">
+                <span class="icon">💰</span> {{ internship.stipend }}
+            </p>
+            <p class="hiring-status {{ 'active' if 'Actively' in internship.hiring_status else 'inactive' }}">
+                {{ internship.hiring_status }}
+            </p>
+            
+            <div class="required-skills">
+                <strong>Requires:</strong>
+                <p>
+                {% set cleaned_skills = internship.skills_required.replace('[', '').replace(']', '').replace("'", '').split(',') %}
+                {% for req_skill in cleaned_skills %}
+                    <span class="tag">{{ req_skill.strip() }}</span>
+                {% endfor %}
+                </p>
+            </div>
+        </div>
+        
+        <div class="card-footer">
+            <button class="btn-primary full-width" onclick="alert('Applying logic not implemented yet!')">Apply Now</button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+    <p>We couldn't find any internships right now. Please check back later or update your skills.</p>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Smart Internship Matchmaker{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="{{ url_for('index') }}" class="brand">🎓 Matchmaker</a>
+            <ul class="nav-links">
+                {% if session.get('student_id') %}
+                    <li><a href="{{ url_for('student.dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ url_for('student.logout') }}" class="btn-logout">Logout ({{ session.get('student_name') }})</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('student.login') }}">Login</a></li>
+                    <li><a href="{{ url_for('student.register') }}" class="btn-primary">Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container main-content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Smart Internship Matchmaker. All rights reserved.</p>
+    </footer>
+</body>
+</html>

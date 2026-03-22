@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <h2>Create an Account</h2>
+        <p>Join to find your matched internships.</p>
+        <form action="{{ url_for('student.register') }}" method="POST">
+            <div class="input-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required placeholder="John Doe">
+            </div>
+            
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="john@example.com">
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="Create a strong password">
+            </div>
+
+            <div class="input-group">
+                <label for="location">Preferred Location</label>
+                <input type="text" id="location" name="location" placeholder="e.g. Mumbai, Bangalore, Remote">
+            </div>
+            
+            <div class="input-group">
+                <label for="skills">Your Skills (Comma separated)</label>
+                <textarea id="skills" name="skills" rows="3" placeholder="e.g. Python, Machine Learning, MS-Excel, Communication" required></textarea>
+                <small>Our AI model matches these exactly against internship requirements, so be thorough!</small>
+            </div>
+            
+            <button type="submit" class="btn-primary full-width">Sign Up</button>
+        </form>
+        <p class="auth-footer">Already have an account? <a href="{{ url_for('student.login') }}">Login</a></p>
+    </div>
+</div>
+{% endblock %}
